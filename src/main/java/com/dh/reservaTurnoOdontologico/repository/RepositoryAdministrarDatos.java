@@ -1,5 +1,7 @@
 package com.dh.reservaTurnoOdontologico.repository;
 
-public interface RepositoryAdministrarDatos {
+public interface RepositoryAdministrarDatos<T> {
+    T guardar(T t);
+    T buscar(Integer numeroMatricula);
 
 }
