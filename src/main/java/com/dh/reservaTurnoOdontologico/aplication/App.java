@@ -1,8 +1,10 @@
-package com.dh.reservaTurnoOdontologico;
+package com.dh.reservaTurnoOdontologico.aplication;
 
 import com.dh.reservaTurnoOdontologico.model.Odontologo;
 import com.dh.reservaTurnoOdontologico.repository.impl.RepositoryOdontologoH2;
 import com.dh.reservaTurnoOdontologico.service.ServiceOdontologo;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +15,14 @@ import java.util.List;
  */
 public class App
 {
-    public static void main( String[] args ) throws Exception
-    {
+    private static final Logger logger = LogManager.getLogger(App.class);
+
+    public static void main( String[] args ) throws Exception {
         System.out.println( "Hello World!" );
+        logger.info("---- iniciando prueba de Odontologo Class ----");
 
         //Agrego odonto
-        List<Odontologo> odontologos=new ArrayList<>();
+        List<Odontologo> odontologosPrueba=new ArrayList<>();
        Odontologo odonto1 = new Odontologo(278,"Perez", "jose");
         Odontologo odonto2 = new Odontologo(322,"Rodriguez", "moni");
         Odontologo odonto3 = new Odontologo(897,"Almeida", "pedro");
@@ -27,12 +31,15 @@ public class App
         System.out.println("Vemos a  odonto4: "+odonto4);
 
 
-        System.out.println("---------------------agrego odontologos ----------------------");
-        odontologos.add(odonto1);
-        odontologos.add(odonto2);
-        odontologos.add(odonto3);
+        System.out.println("---------------------agrego odontologos en odontologosPrueba----------------------");
+        logger.info("---------- Agrego odontologos en odontologosPrueba --------");
 
-        System.out.println("Muestro lista:  "+odontologos);
+        odontologosPrueba.add(odonto1);
+        odontologosPrueba.add(odonto2);
+        odontologosPrueba.add(odonto3);
+
+        System.out.println("Muestro lista:  "+odontologosPrueba);
+        logger.info("=============  fin prueba Odontologos class  =========");
 
 // ------------------------------------  prueba main  -----------------------------------
 
@@ -40,20 +47,21 @@ public class App
         System.out.println("----------- prueba main --------------");
         System.out.println("-----------             --------------");
 
+        logger.info("===== iniciando prueba Main =====");
 
         ServiceOdontologo serviceOdontologo = new ServiceOdontologo(new RepositoryOdontologoH2());
 
         Odontologo odontologo = new Odontologo(574, "Pereira", "Roberto");
-        // Guardar
+        // Guardar en h2
         serviceOdontologo.guardar(odontologo);
         serviceOdontologo.guardar(odonto1);
         serviceOdontologo.guardar(odonto2);
         serviceOdontologo.guardar(odonto3);
 
-        // Buscar
+        // Buscar desde h2
         Odontologo odontobuscado1 = serviceOdontologo.buscar(2);
         // Detalle
-        System.out.println("Detallamos a dodonteCreado1" + odontobuscado1);
+        System.out.println("Detallamos a odontoCreado1" + odontobuscado1);
         //ListarTodos
         System.out.println("Vemos la lista: "+ serviceOdontologo.listarTodos());
 

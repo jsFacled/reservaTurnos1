@@ -66,7 +66,7 @@ public class RepositoryOdontologoH2 implements RepositoryAdministrarDatos<Odonto
             psInsert.close();
 
         } catch (SQLException  e) {
-            logger.error("!! Ha ocurrido un error en RepositoryOdontologoH2 guardar");
+            logger.error("!! logger Error : Ha ocurrido un error en RepositoryOdontologoH2 guardar");
             logger.error(e.getMessage());
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -77,7 +77,7 @@ public class RepositoryOdontologoH2 implements RepositoryAdministrarDatos<Odonto
     }
     @Override
     public Odontologo buscar(Integer numeroMatricula) {
-        logger.debug("Buscando medicamento con numeroMatricula : "+numeroMatricula);
+        logger.debug("Buscando odontologo con numeroMatricula : "+numeroMatricula);
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
