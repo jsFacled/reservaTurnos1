@@ -4,6 +4,15 @@ import java.sql.Time;
 import java.util.List;
 
 public class Odontologo {
+    public Long getId_Odontologo() {
+        return id_Odontologo;
+    }
+
+    public void setId_Odontologo(Long id_Odontologo) {
+        this.id_Odontologo = id_Odontologo;
+    }
+
+    private Long id_Odontologo;
     private Integer numeroMatricula;
     private String apellido;
     private String nombre;
