@@ -43,13 +43,15 @@ public class App
 
 // ------------------------------------  prueba main  -----------------------------------
 
-        System.out.println("-----------             --------------");
-        System.out.println("----------- prueba main --------------");
-        System.out.println("-----------             --------------");
+        System.out.println("-----------                    --------------");
+        System.out.println("----------- prueba main con h2 --------------");
+        System.out.println("-----------                    --------------");
 
-        logger.info("===== iniciando prueba Main =====");
+        logger.info("===== iniciando prueba Main con h2 =====");
 
         ServiceOdontologo serviceOdontologo = new ServiceOdontologo(new RepositoryOdontologoH2());
+
+        serviceOdontologo.crearTabla();
 
         Odontologo odontologo = new Odontologo(574, "Pereira", "Roberto");
         // Guardar en h2

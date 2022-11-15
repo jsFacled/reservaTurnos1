@@ -4,3 +4,12 @@ numeroMatricula int,
 apellido varchar(255) not null,
 nombre varchar(255) not null
 );
+
+INSERT INTO table (columna_1, columna_2, columna_3, ...)
+VALUES (valor_1, valor_2, valor_3, ...);
+
+UPDATE tabla
+SET columna_1 = valor_1, columna_2 = valor_2, ...
+WHERE condición;
+
+DELETE FROM nombre_tabla WHERE condición;

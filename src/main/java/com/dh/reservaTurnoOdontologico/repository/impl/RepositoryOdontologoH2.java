@@ -16,10 +16,34 @@ public class RepositoryOdontologoH2 implements RepositoryAdministrarDatos<Odonto
     private static final Logger logger = LogManager.getLogger(RepositoryOdontologoH2.class);
     private final static String DB_JDBC_DRIVER = "org.h2.Driver";
 
-    private final static String DB_URL = "jdbc:h2:~/test;";
+    private final static String DB_URL = "jdbc:h2:~/test";
     private final static String DB_USER ="sa";
     private final static String DB_PASSWORD = "";
 
+
+    @Override
+    public void crearTabla() {
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+
+        try {
+            Class.forName ("org.h2.Driver");
+            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+            Statement sInsert = connection.createStatement();
+            sInsert.execute("create table if not exists odontologos (id int auto_increment primary key,numeroMatricula int,apellido varchar(255) not null, nombre varchar(255) not null);");
+            sInsert.close();
+
+        } catch (SQLException  e) {
+            logger.error("!! logger Error : Ha ocurrido un error en RepositoryOdontologoH2 crearTabla");
+            logger.error(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
 
     @Override
     public Odontologo guardar(Odontologo odontologo) throws SQLException {
@@ -35,23 +59,16 @@ public class RepositoryOdontologoH2 implements RepositoryAdministrarDatos<Odonto
 
             Class.forName ("org.h2.Driver");
             connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-            Statement sInsert = connection.createStatement();
-            sInsert.execute("create table if not exists odontologos (id int auto_increment primary key,numeroMatricula int,apellido varchar(255) not null, nombre varchar(255) not null);");
-            sInsert.close();
 
-
-            Class.forName ("org.h2.Driver");
-            connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-
-
-            psInsert = connection.prepareStatement("INSERT INTO odontologos(id,numeroMatricula, apellido, nombre) VALUES(?,?,?,?)");
+            //psInsert = connection.prepareStatement("INSERT INTO odontologos(id,numeroMatricula, apellido, nombre) VALUES(?,?,?,?)");
+            psInsert = connection.prepareStatement("INSERT INTO odontologos(numeroMatricula, apellido, nombre) VALUES(?,?,?)");
 
             ResultSet rs = psInsert.getGeneratedKeys();
 
-            psInsert.setLong(1, odontologo.getId_Odontologo());
-            psInsert.setInt(2, odontologo.getNumeroMatricula());
-            psInsert.setString(3, odontologo.getApellido());
-            psInsert.setString(4, odontologo.getNombre());
+            //psInsert.setLong(1, odontologo.getId_Odontologo());
+            psInsert.setInt(1, odontologo.getNumeroMatricula());
+            psInsert.setString(2, odontologo.getApellido());
+            psInsert.setString(3, odontologo.getNombre());
             if (rs.next()){
                 odontologo.setId_Odontologo(rs.getLong(1));
 

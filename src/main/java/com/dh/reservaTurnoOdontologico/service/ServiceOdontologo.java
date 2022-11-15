@@ -15,6 +15,10 @@ public class ServiceOdontologo {
 
         this.odontologoDao = odontologoDao;
     }
+
+    public void crearTabla(){
+        odontologoDao.crearTabla();
+    }
     public Odontologo guardar(Odontologo odontologo) throws SQLException {
         return odontologoDao.guardar(odontologo);
 

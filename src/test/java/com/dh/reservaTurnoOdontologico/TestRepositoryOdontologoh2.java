@@ -1,6 +1,7 @@
 package com.dh.reservaTurnoOdontologico;
 
 import com.dh.reservaTurnoOdontologico.model.Odontologo;
+import com.dh.reservaTurnoOdontologico.service.ServiceOdontologo;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +18,7 @@ public class TestRepositoryOdontologoh2 {
 
     }
     @Test
-    void listaTest(){
+    void listaOdontologoModelTest(){
         //Condiciones
         List<Odontologo> odontologosTest = new ArrayList<>();
         Odontologo odontologoTest1=new Odontologo(111,"OdontoTest1","Odontito1");
@@ -32,15 +33,21 @@ public class TestRepositoryOdontologoh2 {
 
         //Entonces
         Assertions.assertEquals(true,odontologoTest1.getNombre()=="Odontito1");
-       // Assertions.assertEquals(true,odontologoTest2.getNombre()=="Odontito2");
-        //Assertions.assertEquals(true,odontologoTest3.getNombre()=="Odontito3");
+        Assertions.assertEquals(true,odontologoTest2.getNombre()=="Odontito2");
+        Assertions.assertEquals(true,odontologoTest3.getNombre()=="Odontito3");
 
     }
-        @AfterEach
+        /*@AfterEach
         void borrarLista(List<Odontologo> odontologoList){
            return;
            // odontologoList=null;
+           }
+         */
 
-        }
+    @Test
+    void listarTest(){
 
+    }
 }
+
+
